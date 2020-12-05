@@ -34,7 +34,9 @@ Redis 설치한 곳 Programfiles의 Redis에서 파일 실행
 > redis-server.exe
 
 (Windows)
+
 ---
+
 6. WAS 테스트 서버 실행
 > python manage.py runserver 0.0.0.0:8000
 ---
