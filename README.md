@@ -16,30 +16,35 @@
 4. Redis 서버 설치
 > 설치 방법
 
+(Linux)
+
 https://redis.io/topics/quickstart
 
-(Linux)
+(Windows)
 
 https://github.com/tporadowski/redis/releases
 
-(Windows)
 ---
+
 5. Redis 실행
-> redis-server
 
 (Linux)
+
+> redis-server
+
+(Windows)
 
 Redis 설치한 곳 Programfiles의 Redis에서 파일 실행
 
 > redis-server.exe
 
-(Windows)
-
 ---
 
 6. WAS 테스트 서버 실행
 > python manage.py runserver 0.0.0.0:8000
+
 ---
+
 7. 홈페이지
 > http://my.computer.host.ip/chat/
 
