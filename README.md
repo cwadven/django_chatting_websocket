@@ -1,6 +1,10 @@
 <code><img src="https://img.shields.io/badge/django%20-%23092E20.svg?&style=for-the-badge&logo=django&logoColor=white"/></code>
 <code><img src="https://img.shields.io/badge/redis%20-%23CC342D.svg?&style=for-the-badge&logo=redis&logoColor=white"/></code>
 
+# 웹 소켓 이용하여 다른 사람과 채팅 (Channel, WebSocket)
+
+<img alt="inside" src="https://github.com/cwadven/django_chatting_websocket/blob/master/assets/dj_channels.jpg" />
+
 # 구축 방법
 
 **1. 가상환경 생성**
