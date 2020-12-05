@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Room</title>
+</head>
+<body>
+    <body>
+        <textarea id="chat-log" cols="100" rows="20"></textarea><br/>
+        <input id="chat-message-input" type="text" size="100"/><br/>
+        <input id="chat-message-submit" type="button" value="Send"/>
+    </body>
+
+    <script>
+        // 방이름
+        var roomName = {{ room_name_json }};
+        
+        // js에서 제공하는 WebSocket 사용
+        var chatSocket = new WebSocket(
+            'ws://' + window.location.host +
+            '/ws/chat/' + roomName + '/');
+    
+        // 메세지가 있을 경우? 메시지를 추가한다
+        chatSocket.onmessage = function(e) {
+            var data = JSON.parse(e.data);
+            var message = data['message'];
+            document.querySelector('#chat-log').value += (message + '\n');
+        };
+    
+        // 소켓이 닫히면 끊는다
+        chatSocket.onclose = function(e) {
+            console.error('Chat socket closed unexpectedly');
+            document.querySelector('#chat-log').value += ('방에 문제가 생겨 채팅이 종료 되었습니다.' + '\n');
+        };
+    
+        // 맨처음에 입력창에 포커스를 하기 위함
+        document.querySelector('#chat-message-input').focus();
+        // 엔터를 누르면 해당 정보가 전송됨
+        document.querySelector('#chat-message-input').onkeyup = function(e) {
+            if (e.keyCode === 13) {  // enter, return
+                document.querySelector('#chat-message-submit').click();
+            }
+        };
+    
+        // 엔터를 하면 해당 input에 있는 정보를 JSON화 시켜서 chatSocket에 전송한다
+        document.querySelector('#chat-message-submit').onclick = function(e) {
+            var messageInputDom = document.querySelector('#chat-message-input');
+            var message = messageInputDom.value;
+            chatSocket.send(JSON.stringify({
+                'message': message
+            }));
+    
+            // input은 비운다
+            messageInputDom.value = '';
+        };
+    </script>    
+</body>
+</html>
