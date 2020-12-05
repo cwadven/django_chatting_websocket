@@ -31,7 +31,7 @@
         // 소켓이 닫히면 끊는다
         chatSocket.onclose = function(e) {
             console.error('Chat socket closed unexpectedly');
-            document.querySelector('#chat-log').value += ('방에 문제가 생겨 채팅이 종료 되었습니다.' + '\n');
+            document.querySelector('#chat-log').value += ('---------------------\n' + '방에 문제가 생겨 채팅이 종료 되었습니다.' + '\n' + '---------------------\n');
         };
     
         // 맨처음에 입력창에 포커스를 하기 위함
