@@ -18,8 +18,9 @@ class ChatConsumer(AsyncWebsocketConsumer):
         )
         await self.accept()
 
+        print(self.scope['headers'][10])
         # 접속 후, 접속자 누구인지 알기 위해서 입장을 알려주기
-        username = self.scope['user'].username if self.scope['user'].username else '익명'
+        username = self.scope['user'].username if self.scope['user'].username else str(self.scope['headers'][10][1])[2:7]+ "익명"
 
         # 각 방에 뿌리는 정보 (이거를 통해서 chat_message 메소드 호출)
         # type으로 함수를 결정해서 해당 메시지를 보내는 형식
@@ -32,7 +33,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
         # Leave room group
 
         # 연결 종료시 나갔다고 알려주기
-        username = self.scope['user'].username if self.scope['user'].username else '익명'
+        username = self.scope['user'].username if self.scope['user'].username else str(self.scope['headers'][10][1])[2:7]+ "익명"
 
         # 각 방에 뿌리는 정보 (이거를 통해서 chat_message 메소드 호출)
         # type으로 함수를 결정해서 해당 메시지를 보내는 형식
@@ -59,7 +60,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
     # Receive message from room group
     async def chat_message(self, event):
-        username = event['user_name'] if event['user_name'] else '익명'
+        username = event['user_name'] if event['user_name'] else str(self.scope['headers'][10][1])[2:7]+ "익명"
         message = f"{username} : " + event['message']
 
         # Send message to WebSocket
