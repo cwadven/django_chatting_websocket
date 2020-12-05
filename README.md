@@ -16,9 +16,12 @@
 4. Redis 서버 설치
 > 설치 방법
 
-(https://redis.io/topics/quickstart)
+https://redis.io/topics/quickstart
+
 (Linux)
-(https://github.com/tporadowski/redis/releases)
+
+https://github.com/tporadowski/redis/releases
+
 (Windows)
 
 5. Redis 실행
