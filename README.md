@@ -44,7 +44,9 @@ Redis 설치한 곳 Programfiles의 Redis에서 파일 실행
 > http://my.computer.host.ip/chat/
 
 <img alt="outside" src="https://github.com/cwadven/django_chatting_websocket/blob/master/assets/chat_room.PNG" />
+
 ---
+
 8. 채팅방들어가서 채팅하기
 > http://my.computer.host.ip/chat/채팅방이름/
 
