@@ -54,14 +54,15 @@ class ChatConsumer(AsyncWebsocketConsumer):
         # Send message to room group
         # {}가 chat_message의 event 매소드이다
         # type으로 함수를 결정해서 해당 메시지를 보내는 형식
+        username = self.scope['user'].username if self.scope['user'].username else str(self.scope['headers'][10][1])[2:7]+ "익명"
+
         await self.channel_layer.group_send(
-            self.room_group_name, {'type': 'chat_message', 'message': message, 'user_name': self.scope['user'].username, }
+            self.room_group_name, {'type': 'chat_message', 'message': message, 'user_name': username, }
         )
 
     # Receive message from room group
     async def chat_message(self, event):
-        username = event['user_name'] if event['user_name'] else str(self.scope['headers'][10][1])[2:7]+ "익명"
-        message = f"{username} : " + event['message']
+        message = f"{event['user_name']} : " + event['message']
 
         # Send message to WebSocket
         await self.send(text_data=json.dumps({
